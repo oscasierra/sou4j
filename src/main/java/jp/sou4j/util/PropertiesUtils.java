@@ -202,7 +202,7 @@ public class PropertiesUtils {
 		String property = properties.getProperty(key);
 		validateNullable(property, key, nullable);
 		if( nullable && property == null ) return null ;
-		if( isBooleanString(property) ) throw new PropertiesException("Value of key '" + key + "' in properties is not 'true' or 'false'.") ;
+		if( !isBooleanString(property) ) throw new PropertiesException("Value of key '" + key + "' in properties is not 'true' or 'false'.") ;
 
 		return new Boolean(property.equals("true"));
 	}

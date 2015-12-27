@@ -15,6 +15,33 @@ import org.junit.Test;
  */
 public class PropertiesUtilsTest {
 
+	@Test(expected=IllegalArgumentException.class)
+	public void getAttributeAsBoolean_1_001() throws Exception {
+		PropertiesUtils.getAttributeAsBoolean(null, null);
+	}
+	@Test(expected=IllegalArgumentException.class)
+	public void getAttributeAsBoolean_1_002() throws Exception {
+		PropertiesUtils.getAttributeAsBoolean(null, "key");
+	}
+	@Test(expected=IllegalArgumentException.class)
+	public void getAttributeAsBoolean_1_003() throws Exception {
+		PropertiesUtils.getAttributeAsBoolean(new Properties(), null);
+	}
+	@Test
+	public void getAttributeAsBoolean_1_101() throws Exception {
+		Properties properties = new Properties();
+		properties.put("key", "true");
+		Boolean actual = PropertiesUtils.getAttributeAsBoolean(properties, "key");
+		Assert.assertThat(actual, is(true));
+	}
+	@Test
+	public void getAttributeAsBoolean_1_102() throws Exception {
+		Properties properties = new Properties();
+		properties.put("key", "false");
+		Boolean actual = PropertiesUtils.getAttributeAsBoolean(properties, "key");
+		Assert.assertThat(actual, is(false));
+	}
+
 	/**
 	 * <p>メソッド getAttributeAsInternetAddressString(Properties, String) を検証します。</p>
 	 * <ul>
