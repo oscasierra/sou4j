@@ -3,6 +3,7 @@ package jp.sou4j.net;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,8 +86,20 @@ public class URLUtils {
 
 		for( String q : query.split("&") ) {
 			String[] keyValue = q.split("=");
-			if( keyValue.length == 1 ) queryMap.put(keyValue[0], "") ;
-			if( keyValue.length == 2 ) queryMap.put(keyValue[0], keyValue[1]) ;
+			String key   = keyValue[0];
+			String value = (keyValue.length == 2) ? keyValue[1] : "" ;
+
+			try {
+				key = URLDecoder.decode(key, "UTF-8");
+			}
+			catch(Exception exception) {}
+
+			try {
+				value = URLDecoder.decode(value, "UTF-8");
+			}
+			catch(Exception exception){}
+
+			queryMap.put(key, value);
 		}
 
 		return queryMap;
