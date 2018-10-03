@@ -3,10 +3,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>jp.sou4j</groupId>
   <artifactId>sou4j</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <packaging>jar</packaging>
   <name>sou4j</name>
   <url>http://maven.apache.org</url>
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <url>https://maven.oscalabo.net/repository/release/</url>
+    </repository>
+  </distributionManagement>
   <build>
     <plugins>
       <plugin>
